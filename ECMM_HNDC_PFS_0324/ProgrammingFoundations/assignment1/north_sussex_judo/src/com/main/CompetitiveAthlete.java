@@ -109,6 +109,55 @@ class CompetitiveAthlete extends Athlete {
       "Competition Cost: $" + String.format("%.2f", calculateCompetitionCost())
     );
     information.add("Weight Category Comparison: " + compareWeightToCategory());
+    information.add(
+      "Weight Category Comparision: " + calculateWeightDifference()
+    );
     return information;
+  }
+
+  public String calculateWeightDifference() {
+    double currentWeight = getCurrentWeight();
+    String competitiveWeight = getCompetitionWeightCategory().toLowerCase();
+    double desireWeight = 0.0;
+    switch (competitiveWeight) {
+      case "heavyweight":
+        desireWeight = 100.0;
+        break;
+      case "light-heavyweight":
+        desireWeight = 100.0;
+        break;
+      case "middleweight":
+        desireWeight = 90.0;
+        break;
+      case "light-middleweight":
+        desireWeight = 81.0;
+        break;
+      case "lightweight":
+        desireWeight = 73.0;
+        break;
+      case "flyweight":
+        desireWeight = 66.0;
+        break;
+      default:
+        return "Unknown Category";
+    }
+
+    if (currentWeight > desireWeight) {
+      return (
+        "You need to lose " +
+        (currentWeight - desireWeight) +
+        " kilograms to meet your competitive weight. " +
+        desireWeight
+      );
+    } else if (currentWeight < desireWeight) {
+      return (
+        "You need to gain " +
+        (desireWeight - currentWeight) +
+        " kilograms to meet your competitive weight. " +
+        desireWeight
+      );
+    } else {
+      return "You are already at your competitive weight. " + desireWeight;
+    }
   }
 }

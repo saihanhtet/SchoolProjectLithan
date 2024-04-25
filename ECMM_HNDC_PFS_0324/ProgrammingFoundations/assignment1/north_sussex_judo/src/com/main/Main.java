@@ -80,12 +80,16 @@ public class Main {
     while (true) {
       OutputUtil.printNormal("Please enter name: ", "");
       username = input.next();
-      if (!isUserRegistered(username)) {
-        break;
+      if (!username.matches("[a-zA-Z]+")) { // Check if the input contains only letters
+        OutputUtil.printWarning("Please enter letters only!");
       } else {
-        OutputUtil.printWarning("User already existed!");
-        displayUserInfo(username);
-        System.out.println(); // separate line
+        if (!isUserRegistered(username)) {
+          break;
+        } else {
+          OutputUtil.printWarning("User already existed!");
+          displayUserInfo(username);
+          System.out.println(); // separate line
+        }
       }
     }
     return username;
@@ -197,8 +201,10 @@ public class Main {
         } catch (Exception e) {
           OutputUtil.printWarning("Please enter only the number.");
         }
-      } else {
+      } else if (answer.toLowerCase().startsWith("n")) {
         break;
+      } else {
+        OutputUtil.printWarning("Please enter only Yes/No");
       }
     }
     return 0;
