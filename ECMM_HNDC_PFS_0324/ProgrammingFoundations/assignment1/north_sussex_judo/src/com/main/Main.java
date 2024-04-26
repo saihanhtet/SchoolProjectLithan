@@ -80,7 +80,8 @@ public class Main {
     while (true) {
       OutputUtil.printNormal("Please enter name: ", "");
       username = input.next();
-      if (!username.matches("[a-zA-Z]+")) { // Check if the input contains only letters
+      // Check if the input contains only letters
+      if (!username.matches("[a-zA-Z]+")) {
         OutputUtil.printWarning("Please enter letters only!");
       } else {
         if (!isUserRegistered(username)) {
@@ -161,7 +162,7 @@ public class Main {
    */
   public static double enterCurrentWeight() {
     while (true) {
-      OutputUtil.printNormal("Please enter your current weight: ");
+      OutputUtil.printNormal("Please enter your current weight: ", "");
       try {
         return Double.parseDouble(input.next());
       } catch (NumberFormatException e) {
@@ -181,14 +182,15 @@ public class Main {
       OutputUtil.printInfo("Cost: $9 dollar for an hour.");
       System.out.println(); // separte line
       OutputUtil.printNormal(
-        "Do you want to take the private coaching? (yes/no): "
+        "Do you want to take the private coaching? (yes/no): ",
+        ""
       );
       String answer = input.next();
       if (answer.toLowerCase().startsWith("y")) {
         OutputUtil.printInfo(
           "Ok then, How many hours would you like for private coaching?"
         );
-        OutputUtil.printNormal("Enter hours: ");
+        OutputUtil.printNormal("Enter hours: ", "");
         try {
           int privateCoachingHours = input.nextInt();
           if (privateCoachingHours > 0 && privateCoachingHours <= 5) {
@@ -221,7 +223,8 @@ public class Main {
         "The entry fee for one competition will cost $22 dollar."
       );
       OutputUtil.printNormal(
-        "Do you want to enter the competition? (yes/no): "
+        "Do you want to enter the competition? (yes/no): ",
+        ""
       );
       String answer = input.next();
       if (answer.toLowerCase().startsWith("y")) {
@@ -304,11 +307,11 @@ public class Main {
     user.setCompetitionWeightCategory(competitionWeightCategory);
     user.setPrivateCoachingHours(privateCoachingHours);
     competitiveAthletes.add(user);
-    ArrayList<String> info = user.getAthleteInfo();
-    for (String i : info) {
-      System.out.println(i);
-    }
-    OutputUtil.printLine();
+
+    displayUserInfo(user.getName());
+    OutputUtil.printInfo(
+      "You have successfully added a new competitive athlete to the list of athletes."
+    );
   }
 
   /**
@@ -334,7 +337,7 @@ public class Main {
         OutputUtil.printInfo(
           "Ok, then how many competitions would you like to participate in this month?"
         );
-        OutputUtil.printNormal("Enter competition number: ");
+        OutputUtil.printNormal("Enter competition number: ", "");
         try {
           noOfCompetitions = input.nextInt();
           if (noOfCompetitions > 0) {
@@ -362,13 +365,11 @@ public class Main {
       // Set additional attributes for private coaching
       user.setPrivateCoachingHours(privateCoachingHours);
       athletes.add(user);
-      ArrayList<String> info = user.getAthleteInfo();
-      for (String i : info) {
-        System.out.println(i);
-      }
-      OutputUtil.printLine();
+      displayUserInfo(user.getName());
+      OutputUtil.printInfo(
+        "You have successfully added a new competitive athlete to the list of athletes."
+      );
     }
-    OutputUtil.printSuccess("Athlete added successfully!");
     OutputUtil.printLine();
   }
 
@@ -432,48 +433,46 @@ public class Main {
       // display the welcome message
       welcomeMessage();
 
-      while (true) {
-        // call get username method to ask the athlete his/her name
-        String athleteName = getUsername();
-        System.out.println(); // to seprate the output
+      // call get username method to ask the athlete his/her name
+      String athleteName = getUsername();
+      System.out.println(); // to seprate the output
 
-        // call the select training method to ask the athlete which training plan he/she want
-        TrainingPlan trainingPlan = selectTrainingPlan();
-        System.out.println(); // to seprate the output
+      // call the select training method to ask the athlete which training plan he/she want
+      TrainingPlan trainingPlan = selectTrainingPlan();
+      System.out.println(); // to seprate the output
 
-        // call the enter current weight method to ask the athlete his/her current weight
-        double currentWeight = enterCurrentWeight();
-        System.out.println(); // to seprate the output
+      // call the enter current weight method to ask the athlete his/her current weight
+      double currentWeight = enterCurrentWeight();
+      System.out.println(); // to seprate the output
 
-        // call the select private coaching method to ask the athlete how many private coaching hours he/she want
-        int privateCoachingHours = selectPrivateCoaching();
-        System.out.println(); // to seprate the output
+      // call the select private coaching method to ask the athlete how many private coaching hours he/she want
+      int privateCoachingHours = selectPrivateCoaching();
+      System.out.println(); // to seprate the output
 
-        // check the athlete has willing for competition and if he/she is not in beginner plan
-        boolean willing = false;
-        if (!trainingPlan.getName().equalsIgnoreCase("beginner")) {
-          willing = willingForCompetition();
-        }
-        // add the new athlete to the list
-        addAthlete(
-          athleteName,
-          trainingPlan,
-          currentWeight,
-          privateCoachingHours,
-          willing
+      // check the athlete has willing for competition and if he/she is not in beginner plan
+      boolean willing = false;
+      if (!trainingPlan.getName().equalsIgnoreCase("beginner")) {
+        willing = willingForCompetition();
+      }
+      // add the new athlete to the list
+      addAthlete(
+        athleteName,
+        trainingPlan,
+        currentWeight,
+        privateCoachingHours,
+        willing
+      );
+
+      System.out.println(); // to seprate the output
+
+      // ask if the user want to quit
+      if (wantToQuit()) {
+        OutputUtil.printLine();
+        OutputUtil.printSuccess(
+          "Thanks for using the North Sussex Judo Program."
         );
-
-        System.out.println(); // to seprate the output
-
-        // ask if the user want to quit
-        if (wantToQuit()) {
-          OutputUtil.printLine();
-          OutputUtil.printSuccess(
-            "Thanks for using the North Sussex Judo Program."
-          );
-          OutputUtil.printLine();
-          break;
-        }
+        OutputUtil.printLine();
+        break;
       }
     }
   }
