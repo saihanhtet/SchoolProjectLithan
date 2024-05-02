@@ -67,7 +67,9 @@ public class Main {
    */
   public static void welcomeMessage() {
     OutputUtil.printLine();
-    OutputUtil.printInfo("Welcome from the North Judo Training");
+    OutputUtil.printInfo(
+      "Welcome to the North Sussex Judo Training Cost Calculation Program!"
+    );
     OutputUtil.printLine();
   }
 
@@ -109,6 +111,7 @@ public class Main {
 
     if (user instanceof Athlete athlete) {
       ArrayList<String> info = athlete.getAthleteInfo();
+      // loop each athlete information for each and display it
       for (String i : info) {
         System.out.println(i);
       }
@@ -133,6 +136,7 @@ public class Main {
       System.out.println(); // separate line
       OutputUtil.printWarning("Enter 1 or 2 or 3 only.");
       OutputUtil.printNormal("Enter your plan: ", "");
+      // error handling started
       try {
         int trainingPlanInput = input.nextInt();
         switch (trainingPlanInput) {
@@ -193,11 +197,14 @@ public class Main {
         OutputUtil.printNormal("Enter hours: ", "");
         try {
           int privateCoachingHours = input.nextInt();
-          if (privateCoachingHours > 0 && privateCoachingHours <= 5) {
+          if (privateCoachingHours > 0 && privateCoachingHours <= 20) {
             return privateCoachingHours;
+          } else if (privateCoachingHours > 20) {
+            OutputUtil.printDanger("Athlete can only received ", "");
+            OutputUtil.printDanger("maximum 20 hours of private coaching.");
           } else {
             OutputUtil.printWarning(
-              "Please enter a valid number between 1 to 5."
+              "Please enter a valid number between 1 to 20."
             );
           }
         } catch (Exception e) {
