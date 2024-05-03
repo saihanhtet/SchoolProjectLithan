@@ -4,10 +4,10 @@ import java.util.ArrayList;
 import java.util.Scanner;
 
 /**
- * Classname: App
- * Version information: 1.0
- * Date: 12/04/2024
- * Author: Sai Han Htet
+ * Classname: Main
+ * @version information: 1.0
+ * @since 12/04/2024
+ * @author Sai Han Htet
  * Description: – To keep tracking the athlete of the North Judo Training Club
  */
 
