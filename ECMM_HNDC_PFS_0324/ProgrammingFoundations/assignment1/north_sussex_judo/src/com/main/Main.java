@@ -101,7 +101,6 @@ public class Main {
   /**
    * This method used to display the user information.
    *
-   * @param username
    */
   public static void displayUserInfo(String username) {
     OutputUtil.printLine("-");
@@ -184,7 +183,7 @@ public class Main {
     while (true) {
       OutputUtil.printInfo("Rule: maximum private coaching hours is 5 hours.");
       OutputUtil.printInfo("Cost: $9 dollar for an hour.");
-      System.out.println(); // separte line
+      System.out.println(); // separate line
       OutputUtil.printNormal(
         "Do you want to take the private coaching? (yes/no): ",
         ""
@@ -225,19 +224,21 @@ public class Main {
    */
   public static boolean willingForCompetition() {
     boolean flag = false;
-    while (true) {
-      OutputUtil.printInfo(
-        "The entry fee for one competition will cost $22 dollar."
-      );
-      OutputUtil.printNormal(
-        "Do you want to enter the competition? (yes/no): ",
-        ""
-      );
-      String answer = input.next();
+    OutputUtil.printInfo(
+      "The entry fee for one competition will cost $22 dollar."
+    );
+    OutputUtil.printNormal(
+      "Do you want to enter the competition? (yes/no): ",
+      ""
+    );
+    String answer;
+    try {
+      answer = input.next();
       if (answer.toLowerCase().startsWith("y")) {
         flag = true;
       }
-      break;
+    } catch (Exception e) {
+      throw new RuntimeException(e);
     }
     return flag;
   }
@@ -291,7 +292,6 @@ public class Main {
    * @param trainingPlan
    * @param currentWeight
    * @param privateCoachingHours
-   * @param willingForCompetition
    * @param noOfCompetitions
    * @param competitionWeightCategory
    */
@@ -300,7 +300,6 @@ public class Main {
     TrainingPlan trainingPlan,
     double currentWeight,
     int privateCoachingHours,
-    boolean willingForCompetition,
     int noOfCompetitions,
     String competitionWeightCategory
   ) {
@@ -363,7 +362,6 @@ public class Main {
         trainingPlan,
         currentWeight,
         privateCoachingHours,
-        willingForCompetition,
         noOfCompetitions,
         competitionWeightCategory
       );
@@ -442,19 +440,19 @@ public class Main {
 
       // call get username method to ask the athlete his/her name
       String athleteName = getUsername();
-      System.out.println(); // to seprate the output
+      System.out.println(); // to separate the output
 
       // call the select training method to ask the athlete which training plan he/she want
       TrainingPlan trainingPlan = selectTrainingPlan();
-      System.out.println(); // to seprate the output
+      System.out.println(); // to separate the output
 
       // call the enter current weight method to ask the athlete his/her current weight
       double currentWeight = enterCurrentWeight();
-      System.out.println(); // to seprate the output
+      System.out.println(); // to separate the output
 
       // call the select private coaching method to ask the athlete how many private coaching hours he/she want
       int privateCoachingHours = selectPrivateCoaching();
-      System.out.println(); // to seprate the output
+      System.out.println(); // to separate the output
 
       // check the athlete has willing for competition and if he/she is not in beginner plan
       boolean willing = false;
@@ -470,7 +468,7 @@ public class Main {
         willing
       );
 
-      System.out.println(); // to seprate the output
+      System.out.println(); // to separate the output
 
       // ask if the user want to quit
       if (wantToQuit()) {

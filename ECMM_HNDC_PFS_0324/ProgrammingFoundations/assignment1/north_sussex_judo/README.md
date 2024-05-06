@@ -106,3 +106,44 @@ Start
 
 End
 ```
+
+### Classes with methods
+
+#### Main Class
+
+```
+getUserByName  – Get the athlete object by name of athlete
+isUserRegister  – Check whether the user is already exist or not
+welcomeMessage  – Display the welcome message when the program start
+getUsername  – Get the athlete name from user with input
+displayUserInfo  – Display the information of user in list style
+selectTrainingPlan  – Ask the user to select the training plan
+enterCurrentWeight  – Get the current weight of user
+selectPrivateCoaching  – Ask the user to take the private coaching and get the hours of coaching
+willingForCompetition  – Get the user willing for participating the competition
+selectCompetitionWeightCategory  – To select the competition weight category type from user
+addCompetitiveAthlete  – Add the competitive athlete into array
+addAthlete  – Add the normal athlete into array
+wantToQuit  – Ask user wants to quit the program or not
+demoData  – Comes with the demo accounts already stored in NSJ
+main  – The entry point of the NSJ application
+
+```
+
+Athlete Class:
+Methods used list:
+
+```
+getTrainingPlan – Get the current selected training plan.
+getCurrentWeight – Get the present of user weight
+getCompetitionWeightCategory – Get the competition weight category
+getCompetitionsEntered – Get the number of competition entered
+getPrivateCoachingHours – Get the hours of private coaching
+setCompetitionWeightCategory – Set the new completion weight
+setCompetitionsEntered – Set the new amount of competition entered
+setPrivateCoachingHours – Set the hours of private coaching
+calculateTrainingCost – Calculate the training cost per monthly
+calculatePrivateCoachingCost – Compute the private coaching hours cost
+calculateCost – Calculate the total cost of expenses
+getAthleteInfo – Get the athlete information
+```
